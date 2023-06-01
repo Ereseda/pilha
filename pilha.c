@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -22,11 +21,24 @@ typedef struct no
 }No;
 
 
+void menu(){
+	setlocale(LC_ALL,"Portuguese");
+    printf("==================== MENU ====================\n");
+    printf("\n");
+    printf("  0 - SAIR\n");
+    printf("  1 - EMPILHAR\n");
+    printf("  2 - DESEMPILHAR\n");
+    printf("  3 - IMPRIMIR\n");
+    printf("\n");
+    printf("==============================================\n");
+}
+
 Pessoa ler_pessoa() {
     Pessoa p;
 
-    printf("\n Digite o nome, data de nascimento dd mm aaaa: \n");
-    scanf("%49[^\n] %d %d %d", p.nome, &p.data.dia, &p.data.mes, &p.data.ano);
+    printf("\n Digite o nome, data de nascimento dia, mês, ano: \n\n");
+    scanf("%49[^\n]%d%d%d" , p.nome, &p.data.dia, &p.data.mes, &p.data.ano);
+    printf("\n");
     return p;
 }
 
@@ -49,6 +61,14 @@ No* empilhar(No *topo) {
     }
     return NULL;
 }
+//Operação desempilhar
+
+
+
+
+//Operação imprimir
+
+
 
 
 int main() {
@@ -57,7 +77,8 @@ int main() {
     int opcao;
 
     do {
-        printf("\n0 - sair \n1 - empilhar\n2 - desempilhar \n3 - imprimir\n");
+        //printf("\n0 - SAIR \n1 - EMPILHAR\n2 - DESEMPILHAR \n3 - IMPRIMIR\n");
+        menu();
         scanf("%d", &opcao);
         getchar();
         printf("\n opcao = %d", opcao);
@@ -65,7 +86,7 @@ int main() {
         switch (opcao)
         {
         case 0:
-            printf("\nObrigado por utilizar nosso Sistema, Até logo.\n");
+            printf("\n Obrigado por utilizar nosso Sistema, Até logo.\n");
             break;
         case 1:
             topo = empilhar(topo);
