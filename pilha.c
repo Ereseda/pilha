@@ -35,7 +35,6 @@ void menu(){
 
 Pessoa ler_pessoa() {
     Pessoa p;
-
     printf("\n Digite o nome, data de nascimento dia, mês, ano: \n\n");
     scanf("%49[^\n]%d%d%d" , p.nome, &p.data.dia, &p.data.mes, &p.data.ano);
     printf("\n");
@@ -50,7 +49,6 @@ void imprimir_pessoa(Pessoa p) {
 // Operação push = empilhar
 No* empilhar(No *topo) {
     No *novo = malloc(sizeof(No));
-
     if(novo){
         novo->p = ler_pessoa();
         novo->proximo = topo;
@@ -63,17 +61,34 @@ No* empilhar(No *topo) {
 }
 //Operação desempilhar
 
-
+No* desempilhar(No **topo){
+    if(*topo != NULL){
+        No *remover = *topo;
+        *topo = remover->proximo;
+        return remover;
+    }else
+    printf("\nPilha vazia.\n");
+    return NULL;
+}
 
 
 //Operação imprimir
 
 
+void imprimir_pilha(No *topo){
+    printf("\n---------- PILHA ----------\n");
+    while(topo){
+        imprimir_pessoa(topo->p);
+        topo = topo->proximo;
+    }
 
+    printf("\n-------- FIM PILHA --------\n");
+
+}
 
 int main() {
     setlocale(LC_ALL,"Portuguese");
-    No *topo = NULL;
+    No *remover, *topo = NULL;
     int opcao;
 
     do {
@@ -81,7 +96,7 @@ int main() {
         menu();
         scanf("%d", &opcao);
         getchar();
-        printf("\n opcao = %d", opcao);
+       // printf("\n opcao = %d", opcao);
 
         switch (opcao)
         {
@@ -92,10 +107,15 @@ int main() {
             topo = empilhar(topo);
             break;
         case 2:
-
+            remover = desempilhar(&topo);
+            if(remover!= NULL){
+                    printf("\nNome Removido com Sucesso!n");
+                imprimir_pessoa(remover->p);
+            }else
+                printf("\nSem nó a remover\n");
             break;
         case 3:
-
+                imprimir_pilha(topo);
             break;
         default:
             if(opcao != 0){
