@@ -59,8 +59,8 @@ No* empilhar(No *topo) {
     }
     return NULL;
 }
-//Operação desempilhar
 
+//Operação desempilhar
 No* desempilhar(No **topo){
     if(*topo != NULL){
         No *remover = *topo;
@@ -73,8 +73,6 @@ No* desempilhar(No **topo){
 
 
 //Operação imprimir
-
-
 void imprimir_pilha(No *topo){
     printf("\n---------- PILHA ----------\n");
     while(topo){
@@ -92,12 +90,9 @@ int main() {
     int opcao;
 
     do {
-        //printf("\n0 - SAIR \n1 - EMPILHAR\n2 - DESEMPILHAR \n3 - IMPRIMIR\n");
         menu();
         scanf("%d", &opcao);
         getchar();
-       // printf("\n opcao = %d", opcao);
-
         switch (opcao)
         {
         case 0:
@@ -109,7 +104,7 @@ int main() {
         case 2:
             remover = desempilhar(&topo);
             if(remover!= NULL){
-                    printf("\nNome Removido com Sucesso!n");
+                    printf("\nNome Removido com Sucesso!\n");
                 imprimir_pessoa(remover->p);
             }else
                 printf("\nSem nó a remover\n");
